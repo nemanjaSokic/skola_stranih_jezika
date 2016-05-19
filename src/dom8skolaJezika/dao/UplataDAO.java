@@ -13,7 +13,7 @@ public class UplataDAO {
 	public static Uplata getUplataById(Connection conn, int uplata){
 		Uplata u = null;
 		
-		String s = "select datum,uplaceno from uplate where uplatnica = '" + uplata + "';";
+		String s = "select datum,kolicina from uplate where broj_uplatnice = '" + uplata + "'";
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(s);

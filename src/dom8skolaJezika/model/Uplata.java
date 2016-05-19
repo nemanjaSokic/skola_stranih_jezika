@@ -5,16 +5,17 @@ import java.sql.Date;
 public class Uplata {
 
 	protected int uplatnicaBr,uplata;
+	Date datum;
 	public Uplata(int uplatnicaBr, int uplata, Date datum) {
 		super();
 		this.uplatnicaBr = uplatnicaBr;
 		this.uplata = uplata;
 		this.datum = datum;
 	}
-	Date datum;
+	
 	@Override
 	public String toString() {
-		return "Uplata [uplatnicaBr=" + uplatnicaBr + ", uplata=" + uplata + ", datum=" + datum + "]";
+		return "Uplata " + uplata + "\tdatum " + datum + "\n";
 	}
 	public int getUplatnicaBr() {
 		return uplatnicaBr;

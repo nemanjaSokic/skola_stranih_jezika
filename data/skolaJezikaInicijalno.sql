@@ -80,30 +80,42 @@ insert into kursevi (skola_pib,jezik,nivo,cena,nastavnik) values(123456789,'eng'
 insert into kursevi (skola_pib,jezik,nivo,cena,nastavnik) values(123456789,'nor',22,60000,124);
 insert into kursevi (skola_pib,jezik,nivo,cena,nastavnik) values(123456789,'ger',32,40000,123);
 
-create table uplate(
-	uplatnica int auto_increment,
-	datum date,
-    uplaceno int,
-    primary key(uplatnica)
-);
 
-insert into uplate (datum,uplaceno) values('2015-01-15',2500);
-insert into uplate (datum,uplaceno) values('2015-06-23',3000);
-insert into uplate (datum,uplaceno) values('2015-01-04',3200);
-insert into uplate (datum,uplaceno) values('2015-02-07',5000);
+
+
+
 
 create table pohadjanje(
-	kurs int,
-    ucenik_jmbg int,
-    uplata int,
-    primary key(kurs,ucenik_jmbg),
-    foreign key(kurs) references kursevi(kurs_id),
-    foreign key(ucenik_jmbg) references ucenici(jmbg),
-    foreign key(uplata) references uplate(uplatnica)
+	kurs_id int,
+    ucenik_jmbg int unique,
+    pohadjanje_id int auto_increment,
+    primary key(pohadjanje_id),
+    foreign key(kurs_id) references kursevi(kurs_id),
+    foreign key(ucenik_jmbg) references ucenici(jmbg)
+	
 );
-select * from kursevi;
-insert into pohadjanje (kurs,ucenik_jmbg,uplata) values(1,111,1);
-insert into pohadjanje (kurs,ucenik_jmbg,uplata) values(2,222,2);
-insert into pohadjanje (kurs,ucenik_jmbg,uplata) values(3,333,3);
-insert into pohadjanje (kurs,ucenik_jmbg,uplata) values(2,444,4);
+
+insert into pohadjanje (kurs_id,ucenik_jmbg) values(1,111);
+insert into pohadjanje (kurs_id,ucenik_jmbg) values(2,222);
+insert into pohadjanje (kurs_id,ucenik_jmbg) values(3,333);
+insert into pohadjanje (kurs_id,ucenik_jmbg) values(2,444);
+
+
+
+create table uplate(
+	pohadjanje_id int,
+	broj_uplatnice int auto_increment,
+	datum date,
+    kolicina int,
+    primary key(broj_uplatnice),
+    foreign key(pohadjanje_id) references pohadjanje(pohadjanje_id)
+);
+
+insert into uplate (pohadjanje_id,datum,kolicina) values(1,'2015-01-15',2500);
+insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-06-23',3000);
+insert into uplate (pohadjanje_id,datum,kolicina) values(3,'2015-01-04',3200);
+insert into uplate (pohadjanje_id,datum,kolicina) values(4,'2015-02-07',5000);
+insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-02-08',6000);
+insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-02-08',6000);
+insert into uplate (pohadjanje_id,datum,kolicina) values(3,'2015-02-08',2500);
 
