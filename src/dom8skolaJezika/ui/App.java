@@ -34,7 +34,7 @@ public static Connection conn;
 			
 			System.out.print("opcija:");
 			odluka = ScannerWrapper.ocitajCeoBroj();
-			
+			System.out.println("Cao marince");
 			switch (odluka) {
 			case 0:
 				System.out.println("Izlaz iz programa");
