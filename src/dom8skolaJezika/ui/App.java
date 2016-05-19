@@ -34,7 +34,7 @@ public static Connection conn;
 			
 			System.out.print("opcija:");
 			odluka = ScannerWrapper.ocitajCeoBroj();
-			System.out.println("Cao marince");
+			
 			switch (odluka) {
 			case 0:
 				System.out.println("Izlaz iz programa");
@@ -47,6 +47,9 @@ public static Connection conn;
 				break;
 			case 3:
 				UplataUI.meni();
+				break;
+			case 4:
+				JezikUI.meni();
 				break;
 			default:
 				System.out.println("Nepostojeca komanda");
@@ -63,6 +66,7 @@ public static Connection conn;
 		System.out.println("\tBroj 1 - rad sa školom");
 		System.out.println("\tBroj 2 - rad sa ucenicima");
 		System.out.println("\tBroj 3 - rad sa uplatama");
+		System.out.println("\tBroj 4 - rad sa jezicima");
 		System.out.println("\t\t ...");
 		System.out.println("\tOpcija broj 0 - IZLAZ IZ PROGRAMA");
 		
