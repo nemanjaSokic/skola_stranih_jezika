@@ -11,4 +11,4 @@ where ucenici.jmbg = 222;
 
 select datum,kolicina from uplate where broj_uplatnice = '" + uplata + "';
 
-select * from jezici;
+select * from kursevi;

@@ -31,6 +31,12 @@ public class Kurs {
 		this.nivo = nivo;
 		this.ucenici = ucenici;
 	}
+	public List<Ucenik> getUcenici() {
+		return ucenici;
+	}
+	public void setUcenici(List<Ucenik> ucenici) {
+		this.ucenici = ucenici;
+	}
 	@Override
 	public String toString() {
 		return "Kurs " + cena + ", jezik " + jezik.naziv + nivo.nazivNivoa +  ", " + skola.naziv + ", "

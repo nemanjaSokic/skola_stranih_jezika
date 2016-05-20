@@ -8,6 +8,7 @@ import dom8skolaJezika.dao.JezikDAO;
 import dom8skolaJezika.dao.KursDAO;
 import dom8skolaJezika.dao.NastavnikDAO;
 import dom8skolaJezika.dao.NivoDAO;
+import dom8skolaJezika.dao.PohadjanjaDAO;
 import dom8skolaJezika.dao.SkolaDAO;
 import dom8skolaJezika.model.Jezik;
 import dom8skolaJezika.model.Kurs;
@@ -38,6 +39,9 @@ public class KursUI {
 				case 3:
 					brisanjeKursa();
 					break;
+				case 4:
+					ispisPolaznikaKursa();
+					break;
 				default:
 					System.out.println("Nepostojeca komanda");
 					break;
@@ -45,6 +49,24 @@ public class KursUI {
 			}
 			
 		}
+
+	private static void ispisPolaznikaKursa() {
+		System.out.println("Upisite id kursa:");
+		int id = ScannerWrapper.ocitajCeoBroj();
+		Kurs k = KursDAO.getKursById(App.conn, id);
+		Kurs kurs = PohadjanjaDAO.getPolazniciKursa(App.conn, id);
+		
+		if(kurs.getUcenici().isEmpty()){
+			System.out.println("Kurs nema polaznike.");
+			return;
+		}
+		
+		System.out.println("Polaznici kursa " + k.getJezik() + " " + k.getNivo());
+		for (int i = 0; i < kurs.getUcenici().size(); i++) {
+			System.out.println(kurs.getUcenici().get(i));
+		}
+		
+	}
 
 	private static void brisanjeKursa() {
 		System.out.println("Unesite id kursa: ");
@@ -124,6 +146,7 @@ public class KursUI {
 		System.out.println("\tOpcija broj - 1 ispisi podatke o kursevima");
 		System.out.println("\tOpcija broj - 2 daodavanje kursa");
 		System.out.println("\tOpcija broj - 3 brisanje kursa");
+		System.out.println("\tOpcija broj - 4 ispis polaznika kursa");
 		System.out.println("\t\t ...");
 		System.out.println("\tOpcija broj 0 - IZLAZ IZ PROGRAMA");
 		

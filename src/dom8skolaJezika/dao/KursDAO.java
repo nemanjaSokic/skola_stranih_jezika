@@ -35,6 +35,7 @@ public class KursDAO {
 				Nastavnik nast = NastavnikDAO.getNastavnikById(conn, jmbg);
 				
 				k = new Kurs(idK,cena,skola,nast,j,nivo);
+				
 			}
 			st.close();
 			rs.close();
@@ -87,7 +88,7 @@ public class KursDAO {
 			}else{
 				System.out.println("Greška kod dodavanja u SQL bazu.");
 			}
-			
+			ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,6 +110,7 @@ public class KursDAO {
 			}else{
 				System.out.println("Greska SQL kod brisanja kursa.");
 			}
+			pr.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
