@@ -60,6 +60,7 @@ public class UcenikUI {
 		char z = ScannerWrapper.ocitajOdlukuOPotvrdi("dodate još polaznika na kurs");
 		
 		while(z == 'Y'){
+			z = ScannerWrapper.ocitajOdlukuOPotvrdi("dodate još polaznika na kurs");
 			System.out.println("Unesite jmbg polaznika kojeg dodajete na kurs: ");
 			jmbg = ScannerWrapper.ocitajCeoBroj();
 			PohadjanjaDAO.addPolaznikaUKurs(App.conn, k, jmbg);

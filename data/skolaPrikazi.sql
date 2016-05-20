@@ -12,3 +12,10 @@ where ucenici.jmbg = 222;
 select datum,kolicina from uplate where broj_uplatnice = '" + uplata + "';
 
 select * from kursevi;
+select u.ime,u.prezime,u.jmbg from ucenici u join pohadjanje po on u.jmbg = po.ucenik_jmbg join kursevi k on po.kurs_id = k.kurs_id where k.kurs_id = 5;
+
+
+select * from pohadjanje;
+
+
+

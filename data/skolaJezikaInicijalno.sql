@@ -36,7 +36,7 @@ create table nivoi(
 insert into nivoi (nivo_id,nivo_naziv) values(11,'A1');
 insert into nivoi (nivo_id,nivo_naziv) values(12,'A2');
 insert into nivoi (nivo_id,nivo_naziv) values(21,'B1');
-insert into nivoi (nivo_id,nivo_naziv) values(22,'A2');
+insert into nivoi (nivo_id,nivo_naziv) values(22,'B2');
 insert into nivoi (nivo_id,nivo_naziv) values(31,'C1');
 insert into nivoi (nivo_id,nivo_naziv) values(32,'C2');
 
@@ -87,7 +87,7 @@ insert into kursevi (skola_pib,jezik,nivo,cena,nastavnik) values(123456789,'ger'
 
 create table pohadjanje(
 	kurs_id int,
-    ucenik_jmbg int unique,
+    ucenik_jmbg int,
     pohadjanje_id int auto_increment,
     primary key(pohadjanje_id),
     foreign key(kurs_id) references kursevi(kurs_id),
@@ -119,4 +119,8 @@ insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-02-08',6000);
 insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-02-08',6000);
 insert into uplate (pohadjanje_id,datum,kolicina) values(3,'2015-02-08',2500);
 
-update nivoi set nivo_naziv = 'B2' where nivo_id = 22;
+
+
+
+
+
