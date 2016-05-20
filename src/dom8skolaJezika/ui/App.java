@@ -51,6 +51,9 @@ public static Connection conn;
 			case 4:
 				JezikUI.meni();
 				break;
+			case 5:
+				NastavnikUI.meni();
+				break;
 			default:
 				System.out.println("Nepostojeca komanda");
 				break;
@@ -67,6 +70,7 @@ public static Connection conn;
 		System.out.println("\tBroj 2 - rad sa ucenicima");
 		System.out.println("\tBroj 3 - rad sa uplatama");
 		System.out.println("\tBroj 4 - rad sa jezicima");
+		System.out.println("\tBroj 5 - rad sa nastavnicima");
 		System.out.println("\t\t ...");
 		System.out.println("\tOpcija broj 0 - IZLAZ IZ PROGRAMA");
 		

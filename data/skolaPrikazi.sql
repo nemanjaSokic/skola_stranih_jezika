@@ -10,3 +10,5 @@ join uplate on pohadjanje.pohadjanje_id = uplate.pohadjanje_id join ucenici on p
 where ucenici.jmbg = 222;
 
 select datum,kolicina from uplate where broj_uplatnice = '" + uplata + "';
+
+select * from jezici;

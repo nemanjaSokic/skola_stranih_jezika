@@ -119,3 +119,4 @@ insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-02-08',6000);
 insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-02-08',6000);
 insert into uplate (pohadjanje_id,datum,kolicina) values(3,'2015-02-08',2500);
 
+update nivoi set nivo_naziv = 'B2' where nivo_id = 22;
