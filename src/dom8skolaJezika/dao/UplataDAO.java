@@ -18,12 +18,12 @@ public class UplataDAO {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(s);
 			
-			rs.next();
-			Date datum = rs.getDate(1);
-			int uplaceno = rs.getInt(2);
-			
-			u = new Uplata(uplata,uplaceno,datum);
-			
+			if(rs.next()){
+				Date datum = rs.getDate(1);
+				int uplaceno = rs.getInt(2);
+				
+				u = new Uplata(uplata,uplaceno,datum);
+			}
 		} catch (SQLException e) {
 
 			System.out.println("Greška kod uèitavanja uplate.");

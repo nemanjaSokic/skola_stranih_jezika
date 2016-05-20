@@ -19,12 +19,12 @@ public class UcenikDAO {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(s);
 			
-			rs.next();
-			String ime = rs.getString(1);
-			String prezime = rs.getString(2);
-			
-			u = new Ucenik(prezime,ime,jmbg);
-			
+			if(rs.next()){
+				String ime = rs.getString(1);
+				String prezime = rs.getString(2);
+				
+				u = new Ucenik(prezime,ime,jmbg);
+			}
 		} catch (SQLException e) {
 
 			System.out.println("Greška kod uèitavanja ucenika.");
