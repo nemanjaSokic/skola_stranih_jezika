@@ -101,6 +101,14 @@ public class KursDAO {
 
 	public static void deleteKurs(Connection conn, Kurs k) {
 		
+		k = PohadjanjaDAO.getPolazniciKursa(conn, k.getIdKursa());
+		if(!k.getUcenici().isEmpty()){
+			for (int i = 0; i < k.getUcenici().size(); i++) {
+				int jmbg = k.getUcenici().get(i).getJmbg();
+				PohadjanjaDAO.deletePohadjanje(conn, k,jmbg);
+			}
+		}
+		
 		String s = "delete from kursevi where kurs_id = ?;";
 		try {
 			PreparedStatement pr = conn.prepareStatement(s);

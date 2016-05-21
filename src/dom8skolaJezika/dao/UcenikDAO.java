@@ -1,6 +1,7 @@
 package dom8skolaJezika.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,7 +12,7 @@ import dom8skolaJezika.model.Ucenik;
 
 public class UcenikDAO {
 
-	public static Ucenik getUcnikByJmbg(Connection conn, int jmbg){
+	public static Ucenik getUcenikByJmbg(Connection conn, int jmbg){
 		Ucenik u = null;
 		
 		String s = "select ime,prezime from ucenici where jmbg = '" + jmbg + "';";
@@ -65,6 +66,27 @@ public class UcenikDAO {
 		return listaUcenika;
 	}
 	
-	
+	public static boolean addUcenik(Connection conn,Ucenik n){
+		boolean ret = false;
+		
+		String s = "insert into ucenici (ime,prezime,jmbg) values (?,?,?);";
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(s);
+			ps.setString(1, n.getIme());
+			ps.setString(2, n.getPrezime());
+			ps.setInt(3, n.getJmbg());
+			if(ps.executeUpdate() == 1){
+				System.out.println("Uspešno je dadat ucenik.");
+			}else{
+				System.out.println("Greška pri dodavanju.");
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL greška ucenika");
+			e.printStackTrace();
+		}
+		
+		return ret;
+	}
 	
 }

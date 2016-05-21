@@ -16,7 +16,7 @@ public class PohadjanjaDAO {
 	
 	public static Ucenik getUplateByUcenik(Connection conn, int jm){
 		List<Uplata> sveUplateUcenika = new ArrayList<Uplata>();
-		Ucenik u = UcenikDAO.getUcnikByJmbg(conn, jm);
+		Ucenik u = UcenikDAO.getUcenikByJmbg(conn, jm);
 		Uplata upl = null;
 		
 		
@@ -78,13 +78,16 @@ public class PohadjanjaDAO {
 	
 	public static void addPolaznikaUKurs(Connection conn, Kurs k, int jmbg){
 		
-		Ucenik u = UcenikDAO.getUcnikByJmbg(conn, jmbg);
+		Ucenik u = UcenikDAO.getUcenikByJmbg(conn, jmbg);
 		
 		String s = "insert into pohadjanje (kurs_id,ucenik_jmbg) values (?,?);";
 		try{
 		PreparedStatement pr = conn.prepareStatement(s);
 		pr.setInt(1, k.getIdKursa());
 		pr.setInt(2, jmbg);
+		
+		
+		
 		if(pr.executeUpdate() == 1){
 			System.out.println("Uspesno ste dodali studenta na kurs");
 		}else{
@@ -95,6 +98,26 @@ public class PohadjanjaDAO {
 		}
 		
 		k.getUcenici().add(u);
+	}
+
+	public static void deletePohadjanje(Connection conn, Kurs k, int jmbg) {
+		
+		String s = "delete from pohadjanje where kurs_id = ? and ucenik_jmbg = ?;";
+		
+		try {
+			PreparedStatement pr = conn.prepareStatement(s);
+			pr.setInt(1, k.getIdKursa());
+			pr.setInt(2, jmbg);
+			if(pr.executeUpdate() == 1){
+				System.out.println("Pohadjanje je uspršno obrisano.");
+			}else{
+				System.out.println("Greška pri brisaju.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	

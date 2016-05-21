@@ -17,5 +17,5 @@ select u.ime,u.prezime,u.jmbg from ucenici u join pohadjanje po on u.jmbg = po.u
 
 select * from pohadjanje;
 
-
+delete from pohadjanje where kurs_id = 4 and ucenik_jmbg = 222;
 
