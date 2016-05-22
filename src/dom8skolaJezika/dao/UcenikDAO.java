@@ -92,5 +92,24 @@ public class UcenikDAO {
 		
 		return ret;
 	}
+
+
+	public static void deleteUcenik(Connection conn, Ucenik u) {
+		String s = "delete from ucenici where jmbg = ?;";
+		
+		try {
+			PreparedStatement pr = conn.prepareStatement(s);
+			pr.setInt(1, u.getJmbg());
+			if(pr.executeUpdate() == 1){
+				System.out.println("Ucenik je uspršno obrisano.");
+			}else{
+				System.out.println("Greška pri brisaju.");
+			}
+			pr.close();
+		} catch (SQLException e) {
+			System.out.println("Morate prvo obrisati ucenika iz evidencije kursa kooji pohadja.");
+		}
+		
+	}
 	
 }

@@ -120,7 +120,15 @@ insert into uplate (pohadjanje_id,datum,kolicina) values(2,'2015-02-08',6000);
 insert into uplate (pohadjanje_id,datum,kolicina) values(3,'2015-02-08',2500);
 
 
+create table korisnici(
+	tip_korisnika varchar(5),
+    korisnicko_ime varchar(30),
+    sifra_korisnika varchar(30),
+    
+    primary key(korisnicko_ime)
+);
 
-
-
+insert into korisnici (tip_korisnika,korisnicko_ime,sifra_korisnika) values('admin','admin','admin');
+insert into korisnici (tip_korisnika,korisnicko_ime,sifra_korisnika) values('zapo','goranmakrin','goran123');
+insert into korisnici (tip_korisnika,korisnicko_ime,sifra_korisnika) values('zapo','marinatucakovic','marina123');
 

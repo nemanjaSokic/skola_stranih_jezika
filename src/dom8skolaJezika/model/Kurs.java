@@ -39,8 +39,8 @@ public class Kurs {
 	}
 	@Override
 	public String toString() {
-		return "Kurs " + cena + ", jezik " + jezik.naziv + nivo.nazivNivoa +  ", " + skola.naziv + ", "
-				+ nivo + "nivo.";
+		return "Kurs " + cena + ", jezik " + jezik.naziv + nivo.nazivNivoa +  ", "
+				+ nivo + "nivo." + "\n";
 	}
 	public int getIdKursa() {
 		return idKursa;

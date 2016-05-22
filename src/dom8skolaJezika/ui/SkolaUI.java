@@ -1,7 +1,12 @@
 package dom8skolaJezika.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dom8skolaJezik.utilis.ScannerWrapper;
+import dom8skolaJezika.dao.KursDAO;
 import dom8skolaJezika.dao.SkolaDAO;
+import dom8skolaJezika.model.Kurs;
 import dom8skolaJezika.model.Skola;
 
 public class SkolaUI {
@@ -32,8 +37,13 @@ public class SkolaUI {
 	}
 
 	private static void ispisiKurseve() {
+		List<Kurs> listaKurseva = new ArrayList<Kurs>();
+		listaKurseva = KursDAO.getAllKurs(App.conn);
 		
+		Skola sk = SkolaDAO.getSkola(App.conn);
+		sk.setKursevi(listaKurseva);
 		
+		System.out.println(sk.getNaziv() + ": " + listaKurseva + "\n");
 	}
 
 	private static void ispisiPodatkeSkole() {

@@ -86,6 +86,12 @@ public class Skola {
 	public void setMaticniBroj(int maticniBroj) {
 		this.maticniBroj = maticniBroj;
 	}
+	public List<Kurs> getKursevi() {
+		return kursevi;
+	}
+	public void setKursevi(List<Kurs> kursevi) {
+		this.kursevi = kursevi;
+	}
 	
 	
 }

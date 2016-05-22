@@ -159,5 +159,66 @@ public class UplataDAO {
 		
 		
 	}
+
+	public static boolean getUplataByKurs(Connection conn, Kurs k) {
+		boolean prov = false;
+		
+		String s = "select broj_uplatnice from uplate join pohadjanje on uplate.pohadjanje_id = pohadjanje.pohadjanje_id join kursevi"
+				+ " on pohadjanje.kurs_id = kursevi.kurs_id where kursevi.kurs_id = " + k.getIdKursa() + ";";
+		
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(s);
+			
+			if(rs.next()){
+				prov = true;
+			}
+			
+			st.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return prov;
+	}
+
+	public static Ucenik getUplateByKursByUcenik(Connection conn, int jmbg, Kurs k) {
+		List<Uplata> sveUplateUcenika = new ArrayList<Uplata>();
+		Ucenik u = UcenikDAO.getUcenikByJmbg(conn, jmbg);
+		Uplata upl = null;
+		
+		
+		
+		String s = "select uplate.broj_uplatnice, ku.kurs_id, pohadjanje.pohadjanje_id from pohadjanje "
+				+ "join uplate on pohadjanje.pohadjanje_id = uplate.pohadjanje_id"
+				+ " join kursevi ku on pohadjanje.kurs_id = ku.kurs_id "
+				+ "join ucenici on pohadjanje.ucenik_jmbg = ucenici.jmbg where ucenici.jmbg = "+jmbg+" and ku.kurs_id = " + k.getIdKursa() + ";";
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(s);
+			while(rs.next()){
+				
+				int brUpl = rs.getInt(1);
+				
+				
+				
+				
+				upl = UplataDAO.getUplataById(conn, brUpl);
+				upl.setKurs(k);
+				sveUplateUcenika.add(upl);
+				
+			}
+			st.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		u.setUplate(sveUplateUcenika);
+		return u;
+	}
 	
 }

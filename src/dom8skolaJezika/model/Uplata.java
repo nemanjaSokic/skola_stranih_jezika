@@ -26,7 +26,7 @@ public class Uplata {
 
 	@Override
 	public String toString() {
-		return "Uplata " + uplata + "\tdatum " + datum + " " +kurs.jezik.naziv + kurs.nivo.nazivNivoa + "\n";
+		return "Uplata " + uplata + "\tdatum " + datum + " " +kurs.jezik.naziv + kurs.nivo.nazivNivoa + uplatnicaBr +"\n";
 	}
 	public int getUplatnicaBr() {
 		return uplatnicaBr;

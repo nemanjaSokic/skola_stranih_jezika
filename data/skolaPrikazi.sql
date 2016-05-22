@@ -28,7 +28,7 @@ select uplate.broj_uplatnice, ku.kurs_id from pohadjanje join uplate on pohadjan
 
 select * from uplate;
 
-select kurs_id from pohadjanje where ucenik_jmbg = 222;
+select * from pohadjanje ;
 
 select * from uplate join pohadjanje on uplate.pohadjanje_id = pohadjanje.pohadjanje_id;
 
@@ -39,3 +39,22 @@ join kursevi k on p.kurs_id = k.kurs_id where k.kurs_id = 2 and ucenici.jmbg = 2
 
 
 
+select broj_uplatnice from uplate join pohadjanje on uplate.pohadjanje_id = pohadjanje.pohadjanje_id join kursevi
+on pohadjanje.kurs_id = kursevi.kurs_id where kursevi.kurs_id = 3;
+
+select * from pohadjanje; 
+
+
+
+select uplate.broj_uplatnice, ku.kurs_id, pohadjanje.pohadjanje_id from pohadjanje 
+join uplate on pohadjanje.pohadjanje_id = uplate.pohadjanje_id
+join kursevi ku on pohadjanje.kurs_id = ku.kurs_id 
+join ucenici on pohadjanje.ucenik_jmbg = ucenici.jmbg where ucenici.jmbg = 222 and ku.kurs_id = 5;
+
+
+select uplate.broj_uplatnice, ku.kurs_id, pohadjanje.pohadjanje_id from pohadjanje 
+join uplate on pohadjanje.pohadjanje_id = uplate.pohadjanje_id
+join kursevi ku on pohadjanje.kurs_id = ku.kurs_id
+join ucenici on pohadjanje.ucenik_jmbg = ucenici.jmbg where ucenici.jmbg = 222 and ku.kurs_id = 5;
+
+select * from ucenici;

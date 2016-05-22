@@ -7,6 +7,7 @@ import dom8skolaJezik.utilis.ScannerWrapper;
 import dom8skolaJezika.dao.KursDAO;
 import dom8skolaJezika.dao.PohadjanjaDAO;
 import dom8skolaJezika.dao.UcenikDAO;
+import dom8skolaJezika.dao.UplataDAO;
 import dom8skolaJezika.model.Kurs;
 import dom8skolaJezika.model.Ucenik;
 
@@ -36,6 +37,9 @@ public class UcenikUI {
 			case 4:
 				brisanjeUcenikaSaKursa();
 				break;
+			case 5:
+				brisanjeUcenika();
+				break;
 			default:
 				System.out.println("Nepostojeca komanda");
 				break;
@@ -44,16 +48,33 @@ public class UcenikUI {
 		
 	}
 
+	private static void brisanjeUcenika() {
+		System.out.println("Unesite jmbg polaznika kojeg brisete iz evidencije: ");
+		int jmbg = ScannerWrapper.ocitajCeoBroj();
+		Ucenik u = UcenikDAO.getUcenikByJmbg(App.conn, jmbg);
+		
+		UcenikDAO.deleteUcenik(App.conn, u);
+		
+	}
+
 	private static void brisanjeUcenikaSaKursa() {
-		System.out.println("Unesite id kursa u koji dodajete polaznike: ");
+		System.out.println("Unesite id kursa iz kojeg brisete polaznika: ");
 		int id = ScannerWrapper.ocitajCeoBroj();
 		Kurs k = KursDAO.getKursById(App.conn, id);
 		if(k == null){
 			System.out.println("Kurs ne postoji u evidenciji");
 			return;
 		}
-		System.out.println("Unesite jmbg polaznika kojeg dodajete na kurs: ");
+		System.out.println("Unesite jmbg polaznika kojeg brisete sa kurs: ");
 		int jmbg = ScannerWrapper.ocitajCeoBroj();
+		Ucenik up = UplataDAO.getUplateByUcenik(App.conn, jmbg);
+		up = UplataDAO.getUplateByKursByUcenik(App.conn, jmbg, k);
+		
+			for (int i = 0; i < up.getUplate().size(); i++) {
+				
+				UplataDAO.deleteUplata(App.conn, up.getUplate().get(i).getUplatnicaBr());
+			
+		}
 		PohadjanjaDAO.deletePohadjanje(App.conn,k,jmbg);
 		
 	}
@@ -68,8 +89,10 @@ public class UcenikUI {
 		}
 		System.out.println("Unesite jmbg polaznika kojeg dodajete na kurs: ");
 		int jmbg = ScannerWrapper.ocitajCeoBroj();
-		proveraUcenika(jmbg);
 		
+		if(proveraUcenika(jmbg) == null){
+			return;
+		}
 		if(proveraKursa(k,jmbg) == false){
 			PohadjanjaDAO.addPolaznikaUKurs(App.conn, k, jmbg);
 		}	
@@ -80,6 +103,9 @@ public class UcenikUI {
 			System.out.println("Unesite jmbg polaznika kojeg dodajete na kurs: ");
 			jmbg = ScannerWrapper.ocitajCeoBroj();
 			proveraUcenika(jmbg);
+			if(proveraUcenika(jmbg) == null){
+				return;
+			}
 			if(proveraKursa(k,jmbg) == false){
 				PohadjanjaDAO.addPolaznikaUKurs(App.conn, k, jmbg);
 			}	
@@ -113,9 +139,7 @@ public class UcenikUI {
 				dodavanjeUcenikaUEvidenciju();
 				break;
 			}else{
-				System.out.println("Morate uneti postojeæi jmbg: ");
-				jmbg = ScannerWrapper.ocitajCeoBroj();
-				uc = UcenikDAO.getUcenikByJmbg(App.conn, jmbg);
+				return null;
 			}	
 		}
 		return uc;
@@ -154,6 +178,7 @@ public class UcenikUI {
 		System.out.println("\tOpcija broj - 2 dodavanje polaznika na kurs");
 		System.out.println("\tOpcija broj - 3 dodavanje polaznika u evidenciju");
 		System.out.println("\tOpcija broj - 4 brisanje polaznika sa kursa.");
+		System.out.println("\tOpcija broj - 5 brisanje polaznika iz evidencije.");
 		System.out.println("\t\t ...");
 		System.out.println("\tOpcija broj 0 - IZLAZ IZ PROGRAMA");
 		

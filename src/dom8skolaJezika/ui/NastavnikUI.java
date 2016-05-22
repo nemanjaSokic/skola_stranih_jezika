@@ -90,7 +90,7 @@ public class NastavnikUI {
 	private static void ispisiMenu() {
 		System.out.println("Nastavnik - Osnovne opcije:");
 		System.out.println("\tOpcija broj - 1 ispisi sve podatke o nastavnicima");
-		System.out.println("\tOpcija broj - 2 dodaj novoe podatke o nastavniku");
+		System.out.println("\tOpcija broj - 2 dodaj nove nastavnike");
 		System.out.println("\tOpcija broj - 3 obrisi podatke o nastavniku");
 		System.out.println("\t\t ...");
 		System.out.println("\tOpcija broj 0 - IZLAZ IZ PROGRAMA");
