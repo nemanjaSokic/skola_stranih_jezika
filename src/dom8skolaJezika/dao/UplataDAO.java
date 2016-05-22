@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import dom8skolaJezika.model.Kurs;
 import dom8skolaJezika.model.Ucenik;
 import dom8skolaJezika.model.Uplata;
 
@@ -58,11 +59,12 @@ public class UplataDAO {
 			while(rs.next()){
 				
 				int brUpl = rs.getInt(1);
-			
+				int idK = rs.getInt(2);
 				
-				
+				Kurs k = KursDAO.getKursById(conn, idK);
 				
 				upl = UplataDAO.getUplataById(conn, brUpl);
+				upl.setKurs(k);
 				sveUplateUcenika.add(upl);
 				
 			}
@@ -98,6 +100,63 @@ public class UplataDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+
+	public static void deleteUplata(Connection conn, int uplatnicaBr) {
+	
+		String s = "delete from uplate where broj_uplatnice = ?;";
+		
+		try {
+			PreparedStatement pr = conn.prepareStatement(s);
+			pr.setInt(1, uplatnicaBr);
+			if(pr.executeUpdate() == 1){
+				System.out.println("Uspesno stornirana uplatnica.");
+			}else{
+				System.out.println("Greška pri brisanju.");
+			}
+			pr.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static int getSumaUplataZaKursUcenika(Connection conn, Kurs k, Ucenik u) {
+		int suma = 0;
+		String s = "select ucenici.jmbg,ucenici.ime, ucenici.prezime,k.kurs_id, sum(kolicina) from uplate u " 
+					+ "join pohadjanje p on u.pohadjanje_id = p.pohadjanje_id " 
+					+ "join ucenici on p.ucenik_jmbg = ucenici.jmbg "
+					+ "join kursevi k on p.kurs_id = k.kurs_id where k.kurs_id = " + k.getIdKursa() + " and ucenici.jmbg = " + u.getJmbg() + " group by ucenici.jmbg;";
+		
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(s);
+			while(rs.next()){
+				
+				
+//				int jmbg = rs.getInt(1);
+//				Ucenik u = UcenikDAO.getUcenikByJmbg(conn, jmbg);
+				suma = rs.getInt(5);
+				
+				
+				
+				
+				
+				
+			}
+			st.close();
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return suma;
+		
+		
 		
 	}
 	

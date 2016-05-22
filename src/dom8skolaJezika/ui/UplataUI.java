@@ -47,12 +47,31 @@ public class UplataUI {
 	}
 
 	private static void evidencijaIzvrsenihUplata() {
-		// TODO Auto-generated method stub
+		System.out.println("Unesite id kursa: ");
+		int id = ScannerWrapper.ocitajCeoBroj();
+		Kurs k = KursDAO.getKursById(App.conn, id);
+		k = PohadjanjaDAO.getPolazniciKursa(App.conn, id);
+		for (Ucenik u : k.getUcenici()) {
+			int suma = UplataDAO.getSumaUplataZaKursUcenika(App.conn, k,u);
+			if(k.getCena() == suma){
+				System.out.println("Ucenik " + u.getIme() + " " + u.getPrezime() + " je isplatio kurs.");
+			}else if(k.getCena() < suma){
+				System.out.println("Ucenik " + u.getIme() + " " + u.getPrezime() + " je pretplatio kurs za " + (suma-k.getCena()));
+			}else{
+				System.out.println("Ucenik " + u.getIme() + " " + u.getPrezime() + " treba još da plati - " + (k.getCena() - suma));
+			}
+		}
 		
 	}
 
 	private static void obrisiUplatu() {
-		// TODO Auto-generated method stub
+		Uplata u = pronadjiUplatu();
+		if(u == null){
+			System.out.println("Uplata sa tim brojem ne postoji.");
+			return;
+		}
+		
+		UplataDAO.deleteUplata(App.conn,u.getUplatnicaBr());
 		
 	}
 

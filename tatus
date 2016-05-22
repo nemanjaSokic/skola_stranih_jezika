@@ -1,0 +1,66 @@
+[33mcommit 152a2740b19566177cc8faff2083a4104cb1cb4d[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Sun May 22 02:28:37 2016 +0200
+
+    Ostala uplata da se izmeni malo model
+
+[33mcommit 6795d783d1632b2ce852485ff548fc614bc5b22a[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Sat May 21 23:02:36 2016 +0200
+
+    Zavrseno sve sto se tice funkcija kurs-ucenik,ostao rad sa uplatama.
+
+[33mcommit d906d6834d29ec70d80ce110747a7ab2855e6e05[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Sat May 21 01:49:04 2016 +0200
+
+    Male promene na sql-u,moguce je dodati dva ista studenta na dva razlicita kursa.
+
+[33mcommit a616a85783b8320306e8e4d5d1ca2ff6b46d5a46[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Sat May 21 01:15:41 2016 +0200
+
+    Unete funkcije dodavanja kursa,brisanje kursa. Rad sa ucenicima,dodavanje ucenika u kurs. Potrebno je zavrsiti,dodavanje ucenika u evidenciju,problem sa dodavanjem ucenika na drugi kurs,brisanje pohadjanje ucenika i brisanje kursa.
+
+[33mcommit 44ffe1323d1886bc42b0d2d1ad0b62a70a20b72c[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Fri May 20 17:25:18 2016 +0200
+
+    Dadate funkcije kursa(dodavanje,brisanje,ispis)
+
+[33mcommit c991616d439a2fe67f6e1134abd5d20d1cc20898[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Fri May 20 12:48:23 2016 +0200
+
+    Implementiran ras sa nastavnicima. Omoguceno dodavanje,brisanje i i ispisivanje svih nastavnika.
+
+[33mcommit ae514b62b32319feb5aeb03c7b1f62e5de2f0388[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Fri May 20 01:49:13 2016 +0200
+
+    Dodate nove funkcionalnosti jezika (dodavanje,izmena,brisanje,trazenje,citanje).
+
+[33mcommit e4da31159708570a68a86d158417a452158cb416[m
+Merge: dc4005e c9fd70a
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Thu May 19 19:17:38 2016 +0200
+
+    Mala promena konflikta
+
+[33mcommit dc4005efd4b0474eb1eaf572423411eb4d73b008[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Thu May 19 19:06:02 2016 +0200
+
+    Dodata funkcija rada sa uplatama-izlistavanje uplata odredjenog ucenika
+
+[33mcommit c9fd70a0bd17c097bed5365a5d7cc04007b6a646[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Thu May 19 15:39:30 2016 +0200
+
+    Pokazujem marini pini
+
+[33mcommit 4a526a1ba295156707b0ed33fb167c6fb58e40b2[m
+Author: nemanja_sokic <nemskc@gmail.com>
+Date:   Thu May 19 15:31:01 2016 +0200
+
+    Inicjalna verzija projekta
