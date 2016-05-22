@@ -10,32 +10,36 @@ import java.util.List;
 
 import dom8skolaJezika.model.Kurs;
 import dom8skolaJezika.model.Ucenik;
-import dom8skolaJezika.model.Uplata;
 
 public class PohadjanjaDAO {
 	
-	public static Ucenik getUplateByUcenik(Connection conn, int jm){
-		List<Uplata> sveUplateUcenika = new ArrayList<Uplata>();
-		Ucenik u = UcenikDAO.getUcenikByJmbg(conn, jm);
-		Uplata upl = null;
+	public static int getIdPohadjanja(Connection conn,int idK,int jmbg){
+		int index = 0;
+		Kurs k = getPolazniciKursa(conn, idK);
+		if(k.getUcenici() == null){
+			System.out.println("Na ovom kursu nema polaznika.");
+			return 0;
+		}
+		Ucenik u = null;
+		boolean provera = false;
+		for (int i = 0; i < k.getUcenici().size(); i++) {
+			if(k.getUcenici().get(i).getJmbg() == jmbg){
+				u = UcenikDAO.getUcenikByJmbg(conn, jmbg);
+				provera = true;
+			}
+		}if(provera == false){
+			System.out.println("Ucenik sa jmng-om " + jmbg + " nije na ovom kursu.");
+			return 0;
+		}
 		
 		
+		String s = "select pohadjanje_id from pohadjanje where kurs_id = " + k.getIdKursa() + " and ucenik_jmbg = " + u.getJmbg() + ";";
 		
-		String s = "select uplate.broj_uplatnice from pohadjanje "+
-					"join uplate on pohadjanje.pohadjanje_id = uplate.pohadjanje_id join ucenici on pohadjanje.ucenik_jmbg = ucenici.jmbg "+
-					"where ucenici.jmbg = "+jm+";";
 		try {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(s);
-			while(rs.next()){
-				
-				int brUpl = rs.getInt(1);
-				
-				
-				
-				upl = UplataDAO.getUplataById(conn, brUpl);
-				sveUplateUcenika.add(upl);
-				
+			if(rs.next()){
+				index = rs.getInt(1);
 			}
 			st.close();
 			rs.close();
@@ -45,8 +49,7 @@ public class PohadjanjaDAO {
 		}
 		
 		
-		u.setUplate(sveUplateUcenika);
-		return u;
+		return index;
 	}
 
 	public static Kurs getPolazniciKursa(Connection conn,int idKursa){
@@ -93,6 +96,7 @@ public class PohadjanjaDAO {
 		}else{
 			System.out.println("Greska pri dodavanju ucenika na kurs.");
 		}
+		pr.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -113,11 +117,36 @@ public class PohadjanjaDAO {
 			}else{
 				System.out.println("Greška pri brisaju.");
 			}
+			pr.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		
+	}
+
+	public static List<Kurs> getKursByPolaznik(Connection conn, int jmbg) {
+		
+		Kurs k = null;
+		List<Kurs> kursevi = new ArrayList<Kurs>();
+		String s = "select kurs_id from pohadjanje where ucenik_jmbg = " + jmbg +";";
+		try{
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(s);
+		while(rs.next()){
+			int id = rs.getInt(1);
+			
+			k = KursDAO.getKursById(conn, id);
+			
+			kursevi.add(k);
+		}
+		st.close();
+		rs.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return kursevi;
 	}
 	
 	

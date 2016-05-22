@@ -54,6 +54,8 @@ public class NastavnikDAO {
 				nastavnici.add(n);
 				
 			}
+			st.close();
+			rs.close();
 		} catch (SQLException e) {
 			System.out.println("Greška pri ucitavanju nastavnika.");
 			e.printStackTrace();
@@ -79,6 +81,7 @@ public class NastavnikDAO {
 			}else{
 				System.out.println("Greška pri dodavanju.");
 			}
+			ps.close();
 		} catch (SQLException e) {
 			System.out.println("SQL greška nastavnika");
 			e.printStackTrace();
@@ -99,6 +102,7 @@ public class NastavnikDAO {
 			}else{
 				System.out.println("Nece valjati.");
 			}
+			ps.close();
 		} catch (SQLException e) {
 			System.out.println("SQL greska nastavnika.");
 			e.printStackTrace();

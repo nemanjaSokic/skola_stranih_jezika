@@ -9,6 +9,7 @@ public class Ucenik {
 	protected int jmbg;
 	protected List<Uplata> uplate = new ArrayList<Uplata>();
 	
+	
 	public Ucenik(String ime, String prezime, int jmbg) {
 		super();
 		this.ime = ime;

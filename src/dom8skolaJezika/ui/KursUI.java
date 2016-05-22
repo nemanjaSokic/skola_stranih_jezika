@@ -54,6 +54,10 @@ public class KursUI {
 		System.out.println("Upisite id kursa:");
 		int id = ScannerWrapper.ocitajCeoBroj();
 		Kurs k = KursDAO.getKursById(App.conn, id);
+		if(k == null){
+			System.out.println("Kurs ne postoji.");
+			return;
+		}
 		Kurs kurs = PohadjanjaDAO.getPolazniciKursa(App.conn, id);
 		
 		if(kurs.getUcenici().isEmpty()){

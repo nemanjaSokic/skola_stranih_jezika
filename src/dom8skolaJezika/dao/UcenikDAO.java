@@ -26,6 +26,8 @@ public class UcenikDAO {
 				
 				u = new Ucenik(prezime,ime,jmbg);
 			}
+			st.close();
+			rs.close();
 		} catch (SQLException e) {
 
 			System.out.println("Greška kod uèitavanja ucenika.");
@@ -81,6 +83,8 @@ public class UcenikDAO {
 			}else{
 				System.out.println("Greška pri dodavanju.");
 			}
+			ps.close();
+			
 		} catch (SQLException e) {
 			System.out.println("SQL greška ucenika");
 			e.printStackTrace();
